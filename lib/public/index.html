@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Shine Network</title>
+        <style>
+            body {
+                font-family: Verdana, Arial, Helvetica, sans-serif;
+                font-size: 14px;
+                color: #333;
+                background: #f8f8f8;
+                margin: 0 2em;
+            }
+        </style>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="require.js"></script>
+        <script>
+            require(['shine'], function (shine) {
+                var socket = window.io.connect();
+                window.shine = shine.client(socket);
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Shine Network</h1>
+        <p>Use the dev console to experience Shine.</p>
+        <p><code>shine.help;</code></p>
+    </body>
+</html>
