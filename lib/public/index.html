@@ -15,8 +15,11 @@
         <script src="require.js"></script>
         <script>
             require(['shine'], function (shine) {
-                var socket = window.io.connect();
-                window.shine = shine.client(socket);
+                var socket = window.socket = window.io.connect();
+                var shineClient = window.shineClient = shine.client(socket);
+                var registry = window.registry = shineClient.app('@registry');
+                window.anon = registry.resource('user.@anonymous');
+                window.store = shineClient.app('@public');
             });
         </script>
     </head>
@@ -24,5 +27,16 @@
         <h1>Shine Network</h1>
         <p>Use the dev console to experience Shine.</p>
         <p><code>shine.help;</code></p>
+        <p>&nbsp;</p>
+        <h4>Setup:</h4>
+        <p><code>var socket = io.connect();</code></p>
+        <p><code>var shineClient = shine.client(socket);</code></p>
+        <p><code>var registry = shineClient.app('@registry');</code></p>
+        <p><code>var anon = registry.resource('user.@anonymous');</code></p>
+        <p><code>var store = shineClient.app('@public').as(anon);</code></p>
+        <p>&nbsp;</p>
+        <h4>Operation:</h4>
+        <p><code>store.resource('key').put({"complex": "value"});</code></p>
+        <p><code>store.resource('key').get(function (value) { console.log(value); });</code></p>
     </body>
 </html>
