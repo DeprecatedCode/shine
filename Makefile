@@ -12,5 +12,9 @@ install:
 	npm install socket.io
 	npm install express
 	
+start:
+	node lib/public/src/_build.js
+	node lib/app 8080
+
 dev:
-	nodemon lib/shine 8080
+	nodemon --ignore lib/public/shine.js --exec "make start"
