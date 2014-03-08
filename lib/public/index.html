@@ -15,11 +15,11 @@
         <script src="require.js"></script>
         <script>
             require(['shine'], function (shine) {
-                var socket = window.socket = window.io.connect();
-                var shineClient = window.shineClient = shine.client(socket);
-                var registry = window.registry = shineClient.app('@registry');
-                window.anon = registry.resource('user.@anonymous');
-                window.store = shineClient.app('@public');
+                var socket =        window.socket = window.io.connect();
+                var shineClient =   window.shineClient = shine.client(socket);
+                var registry =      window.registry = shineClient.app('@registry');
+                var anon =          window.anon = registry.resource('user.@anonymous');
+                                    window.store = shineClient.app('@public').as(anon);
             });
         </script>
     </head>
